@@ -15,24 +15,24 @@ import java.util.ArrayList;
 public class CovidService {
 
     public ArrayList<Covid> covids = new ArrayList<Covid>();
+    public ArrayList<CovidCountries> covidsCountries = new ArrayList<CovidCountries>();
 
     public ArrayList<Covid> getAllCovids(){
 
         return covids;
     }
 
-    public ArrayList<Covid> getAllCountriesCovids() throws IOException {
+    public ArrayList<CovidCountries> getAllCountriesCovids() throws IOException {
         URL url = new URL("https://api.covid19api.com/countries");
 
-
         InputStreamReader reader = new InputStreamReader(url.openStream());
-        Covid[] covidsTemp = new Gson().fromJson(reader, Covid[].class);
+        CovidCountries[] covidsTemp = new Gson().fromJson(reader, CovidCountries[].class);
 
         for(int i =0; i < covidsTemp.length; i++) {
-            covids.add(covidsTemp[i]);
+            covidsCountries.add(covidsTemp[i]);
         }
 
-        return covids;
+        return covidsCountries;
     }
 
     public Covid getCovid(String country) {

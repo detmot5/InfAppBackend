@@ -14,12 +14,12 @@ public class CovidController {
     private  CovidService covidService;
 
     @RequestMapping("/covids")
-    public ArrayList<Covid> getAllCovids(){
+    public ArrayList<Covid> getAllCovids() throws IOException {
         return covidService.getAllCovids();
     }
 
     @RequestMapping("/covids/countries")
-    public List<Covid> getAllCountriesCovids() throws IOException {
+    public ArrayList<CovidCountries> getAllCountriesCovids() throws IOException {
         return covidService.getAllCountriesCovids();
     }
 
