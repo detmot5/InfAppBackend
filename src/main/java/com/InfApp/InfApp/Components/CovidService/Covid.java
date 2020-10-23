@@ -1,86 +1,38 @@
 package com.InfApp.InfApp.Components.CovidService;
 
-import com.google.gson.Gson;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+public class Covid{
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
-
-
-
-public class Covid extends CovidController{
-        
-
-    @SerializedName("Country")
-    @Expose
     private String country;
-    @SerializedName("CountryCode")
-    @Expose
     private String countryCode;
-    @SerializedName("Province")
-    @Expose
     private String province;
-    @SerializedName("City")
-    @Expose
     private String city;
-    @SerializedName("CityCode")
-    @Expose
     private String cityCode;
-    @SerializedName("Lat")
-    @Expose
     private String lat;
-    @SerializedName("Lon")
-    @Expose
     private String lon;
-    @SerializedName("Confirmed")
-    @Expose
     private Integer confirmed;
-    @SerializedName("Deaths")
-    @Expose
     private Integer deaths;
-    @SerializedName("Recovered")
-    @Expose
     private Integer recovered;
-    @SerializedName("Active")
-    @Expose
     private Integer active;
-    @SerializedName("Date")
-    @Expose
     private String date;
 
-    /// ==========MY Json===========
-    @SerializedName("DayOne")
-    @Expose
-    private Integer dayOne;
-    /// ==========MY Json===========
 
-    public Covid(String country, String countryCode, int confirmed, int deaths, int recovered, int active, int dayOne, String date) {
-        super();
+    public Covid(String country, String countryCode, String province, String city, String cityCode, String lat, String lon,
+                 Integer confirmed, Integer deaths, Integer recovered, Integer active, String date, Integer dayOne) {
+
         this.country = country;
         this.countryCode = countryCode;
+        this.province = province;
+        this.city = city;
+        this.cityCode = cityCode;
+        this.lat = lat;
+        this.lon = lon;
         this.confirmed = confirmed;
         this.deaths = deaths;
-        this.deaths = recovered;
+        this.recovered = recovered;
         this.active = active;
         this.date = date;
-        this.dayOne = dayOne;
+
     }
-
-    public Integer getDayOne()  {
-        dayOne =  covidsList.get(9).getConfirmed() - covidsList.get(8).getConfirmed();
-        return  dayOne;
-    }
-
-    public void getDayOne(Integer dayOne) {
-        this.dayOne = dayOne;
-    }
-
-
 
     public String getCountry() {
         return country;
