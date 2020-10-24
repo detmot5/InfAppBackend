@@ -8,11 +8,11 @@
         <version>2.2.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>net.javaguides</groupId>
-    <artifactId>springboot-hibernate-one-one-mapping</artifactId>
+    <groupId>com.InfApp</groupId>
+    <artifactId>InfApp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot-hibernate-one-one-mapping</name>
-    <description>Demo project for Spring Boot Hibernate one to one mapping</description>
+    <name>InfApp</name>
+    <description>InfApp project backend</description>
 
     <properties>
         <java.version>11</java.version>

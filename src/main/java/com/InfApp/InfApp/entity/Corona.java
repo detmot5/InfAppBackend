@@ -1,4 +1,4 @@
-package pl.infapp.demo.entity;
+package com.InfApp.InfApp.entity;
 
 
 import javax.persistence.CascadeType;

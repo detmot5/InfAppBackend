@@ -1,18 +1,18 @@
-package pl.infapp.demo;
+package com.InfApp.InfApp;
 
+import com.InfApp.InfApp.entity.Corona;
+import com.InfApp.InfApp.entity.User;
+import com.InfApp.InfApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import pl.infapp.demo.entity.Corona;
-import pl.infapp.demo.entity.User;
-import pl.infapp.demo.repository.UserRepository;
 
 @SpringBootApplication
-public class InfappApplication implements CommandLineRunner {
+public class InfAppApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
-        SpringApplication.run(InfappApplication.class, args);
+        SpringApplication.run(InfAppApplication.class, args);
     }
 
     @Autowired
