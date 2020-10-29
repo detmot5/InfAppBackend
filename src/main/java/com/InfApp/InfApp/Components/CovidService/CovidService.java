@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -14,30 +13,69 @@ import java.util.ArrayList;
 @Service
 public class CovidService {
 
-    public ArrayList<Covid> covids = new ArrayList<Covid>();
-    public ArrayList<CovidCountries> covidsCountries = new ArrayList<CovidCountries>();
+    public ArrayList<Covid> covidsList = new ArrayList<Covid>();
+    public ArrayList<CovidCountry> covidsCountry = new ArrayList<CovidCountry>();
 
-    public ArrayList<Covid> getAllCovids(){
+    public ArrayList<Covid> getAllCovids() throws IOException {
 
-        return covids;
-    }
+        URL url = new URL("https://api.covid19api.com/total/country/poland");
 
-    public ArrayList<CovidCountries> getAllCountriesCovids() throws IOException {
-        URL url = new URL("https://api.covid19api.com/countries");
+        Covid[] covidsTemp = creatGson(url);
 
-        InputStreamReader reader = new InputStreamReader(url.openStream());
-        CovidCountries[] covidsTemp = new Gson().fromJson(reader, CovidCountries[].class);
-
-        for(int i =0; i < covidsTemp.length; i++) {
-            covidsCountries.add(covidsTemp[i]);
+        for(int i = 0; i < covidsTemp.length; i++) {
+            covidsList.add(covidsTemp[i]);
         }
 
-        return covidsCountries;
+        return covidsList;
     }
 
-    public Covid getCovid(String country) {
-        return covids.stream().filter(t->t.getCountry().equals(country)).findFirst().get();
+    public ArrayList<CovidCountry> getAllCountriesCovids() throws IOException {
+        URL url = new URL("https://api.covid19api.com/countries");
+
+        creatGson(url);
+        CovidCountry[] covidsTemp = creatGsonCountry(url);
+
+        for(int i = 0; i < covidsTemp.length; i++) {
+            covidsCountry.add(covidsTemp[i]);
+        }
+
+        return covidsCountry;
     }
 
+    public ArrayList<Covid> getCovidFromBeginning(String country) throws IOException {
+        covidsList.clear();
+
+        URL url = new URL("https://api.covid19api.com/total/country/" + country);
+        Covid[] covidsTemp = creatGson(url);
+
+        for(int i = 0; i < covidsTemp.length; i++) {
+            covidsList.add(covidsTemp[i]);
+        }
+
+        return covidsList;
+    }
+
+    public void addCovid(Covid covid) {
+        covidsList.add(covid);
+    }
+
+
+    // Methods url
+
+    public Covid[] creatGson(URL url) throws IOException {
+        InputStreamReader reader = new InputStreamReader(url.openStream());
+        Covid[] covidsTemp = new Gson().fromJson(reader, Covid[].class);
+        return covidsTemp;
+    }
+
+    public CovidCountry[] creatGsonCountry(URL url) throws IOException {
+        InputStreamReader reader = new InputStreamReader(url.openStream());
+        CovidCountry[] covidsTemp = new Gson().fromJson(reader, CovidCountry[].class);
+        return covidsTemp;
+    }
+
+    // Methods url
 
 }
+
+
