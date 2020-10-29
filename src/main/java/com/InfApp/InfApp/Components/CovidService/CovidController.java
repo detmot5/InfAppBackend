@@ -30,7 +30,7 @@ public class CovidController {
         return covidService.getCovidFromBeginning(country);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/covids")
+    @PostMapping(value = "/covids")
     public void addCovid(@RequestBody Covid covid){
         covidService.addCovid(covid);
     }
