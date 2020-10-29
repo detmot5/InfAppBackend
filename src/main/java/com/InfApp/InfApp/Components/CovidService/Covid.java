@@ -2,133 +2,88 @@ package com.InfApp.InfApp.Components.CovidService;
 
 public class Covid{
 
-    private String country;
-    private String countryCode;
-    private String province;
-    private String city;
-    private String cityCode;
-    private String lat;
-    private String lon;
-    private Integer confirmed;
-    private Integer deaths;
-    private Integer recovered;
-    private Integer active;
-    private String date;
+    private String Country;
+    private String CountryCode;
+    private String Province;
+    private String City;
+    private String CityCode;
+    private String Lat;
+    private String Lon;
+    private Integer Confirmed;
+    private Integer Deaths;
+    private Integer Recovered;
+    private Integer Active;
+    private String Date;
 
 
-    public Covid(String country, String countryCode, String province, String city, String cityCode, String lat, String lon,
-                 Integer confirmed, Integer deaths, Integer recovered, Integer active, String date, Integer dayOne) {
+    public Covid(String Country, String CountryCode, String Province, String City, String CityCode, String Lat, String Lon,
+                 Integer Confirmed, Integer Deaths, Integer Recovered, Integer Active, String Date, Integer DayOne) {
 
-        this.country = country;
-        this.countryCode = countryCode;
-        this.province = province;
-        this.city = city;
-        this.cityCode = cityCode;
-        this.lat = lat;
-        this.lon = lon;
-        this.confirmed = confirmed;
-        this.deaths = deaths;
-        this.recovered = recovered;
-        this.active = active;
-        this.date = date;
+        this.Country = Country;
+        this.Province = Province;
+        this.City = City;
+        this.CityCode = CityCode;
+        this.Lat = Lat;
+        this.Lon = Lon;
+        this.Confirmed = Confirmed;
+        this.Deaths = Deaths;
+        this.Recovered = Recovered;
+        this.Active = Active;
+        this.Date = Date;
+        this.CountryCode = CountryCode;
 
     }
 
     public String getCountry() {
-        return country;
+        return Country;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCountry(String Country) {
+        this.Country = Country;
     }
 
-    public String getCountryCode() {
-        return countryCode;
-    }
+    public String getCountryCode() { return CountryCode; }
 
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
-    }
+    public void setCountryCode(String countryCode) { CountryCode = countryCode; }
 
-    public String getProvince() {
-        return province;
-    }
+    public String getProvince() { return Province; }
 
-    public void setProvince(String province) {
-        this.province = province;
-    }
+    public void setProvince(String province) { Province = province; }
 
-    public String getCity() {
-        return city;
-    }
+    public String getCity() { return City; }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
+    public void setCity(String city) { City = city; }
 
-    public String getCityCode() {
-        return cityCode;
-    }
+    public String getCityCode() { return CityCode; }
 
-    public void setCityCode(String cityCode) {
-        this.cityCode = cityCode;
-    }
+    public void setCityCode(String cityCode) { CityCode = cityCode; }
 
-    public String getLat() {
-        return lat;
-    }
+    public String getLat() { return Lat; }
 
-    public void setLat(String lat) {
-        this.lat = lat;
-    }
+    public void setLat(String lat) { Lat = lat; }
 
-    public String getLon() {
-        return lon;
-    }
+    public String getLon() { return Lon; }
 
-    public void setLon(String lon) {
-        this.lon = lon;
-    }
+    public void setLon(String lon) { Lon = lon; }
 
-    public Integer getConfirmed() {
-        return confirmed;
-    }
+    public Integer getConfirmed() { return Confirmed; }
 
-    public void setConfirmed(Integer confirmed) {
-        this.confirmed = confirmed;
-    }
+    public void setConfirmed(Integer confirmed) { Confirmed = confirmed; }
 
-    public Integer getDeaths() {
-        return deaths;
-    }
+    public Integer getDeaths() { return Deaths; }
 
-    public void setDeaths(Integer deaths) {
-        this.deaths = deaths;
-    }
+    public void setDeaths(Integer deaths) { Deaths = deaths; }
 
-    public Integer getRecovered() {
-        return recovered;
-    }
+    public Integer getRecovered() { return Recovered; }
 
-    public void setRecovered(Integer recovered) {
-        this.recovered = recovered;
-    }
+    public void setRecovered(Integer recovered) { Recovered = recovered; }
 
-    public Integer getActive() {
-        return active;
-    }
+    public Integer getActive() { return Active; }
 
-    public void setActive(Integer active) {
-        this.active = active;
-    }
+    public void setActive(Integer active) { Active = active; }
 
-    public String getDate() {
-        return date;
-    }
+    public String getDate() { return Date; }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
+    public void setDate(String date) { Date = date; }
 }
 

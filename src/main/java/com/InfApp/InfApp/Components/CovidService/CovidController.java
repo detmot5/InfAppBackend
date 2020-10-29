@@ -13,19 +13,26 @@ public class CovidController {
     @Autowired
     private  CovidService covidService;
 
-    @RequestMapping("/covids")
+    @GetMapping("/covids")
     public ArrayList<Covid> getAllCovids() throws IOException {
         return covidService.getAllCovids();
     }
 
-    @RequestMapping("/covids/countries")
-    public ArrayList<CovidCountries> getAllCountriesCovids() throws IOException {
+    @GetMapping("/covids/countries")
+    public ArrayList<CovidCountry> getAllCountriesCovids() throws IOException {
+        // Getting information about name and Slug countries
         return covidService.getAllCountriesCovids();
     }
 
-    @RequestMapping("/covids/{country}")
-    public Covid getCovid(@PathVariable String country) throws IOException {
-    return covidService.getCovid(country);
+    @GetMapping("/covid/{country}")
+    public ArrayList<Covid> getCovidFromBeginning(@PathVariable String country) throws IOException {
+        // Getting information about one country from beginning to today
+        return covidService.getCovidFromBeginning(country);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/covids")
+    public void addCovid(@RequestBody Covid covid){
+        covidService.addCovid(covid);
     }
 
 
