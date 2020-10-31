@@ -21,21 +21,5 @@ public class InfAppApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        //Dodawanie użytkownioka w przyszlosci w controllerze
-        User user = new User();
-        user.setName("Konrad");
-        user.setEmail("konrad@gmail.com");
-
-        Corona corona = new Corona();
-        corona.setLink1("1");
-        corona.setLink2("2");
-        corona.setLink3("3");
-        corona.setLink4("4");
-
-        user.setCorona(corona);
-        corona.setUser(user);
-
-        userRepository.save(user);
-
     }
 }

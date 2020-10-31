@@ -1,6 +1,9 @@
 package com.InfApp.InfApp.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +16,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "corona")
+@Getter
+@Setter
+@AllArgsConstructor
+@RequiredArgsConstructor
+@ToString
 public class Corona {
 
     @Id
@@ -34,64 +42,6 @@ public class Corona {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "corona") //podlaczanie korony pod tabele user
     private User user;
 
-    public Corona() {
 
-    }
-
-    public Corona(String link1, String link2, String link3, String link4) {
-        super();
-        this.link1 = link1;
-        this.link2 = link2;
-        this.link3 = link3;
-        this.link4 = link4;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getLink1() {
-        return link1;
-    }
-
-    public void setLink1(String link1) {
-        this.link1 = link1;
-    }
-
-    public String getLink2() {
-        return link2;
-    }
-
-    public void setLink2(String link2) {
-        this.link2 = link2;
-    }
-
-    public String getLink3() {
-        return link3;
-    }
-
-    public void setLink3(String link3) {
-        this.link3 = link3;
-    }
-
-    public String getLink4() {
-        return link4;
-    }
-
-    public void setLink4(String link4) {
-        this.link4 = link4;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }
 
