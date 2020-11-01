@@ -35,5 +35,10 @@ public class CovidController {
         covidService.addCovid(covid);
     }
 
+    @PutMapping(value = "/covid/{country}")
+    public void updateCovid(@RequestBody Covid covid, @PathVariable String country){
+        covidService.updateCovid(country, covid);
+    }
+
 
 }

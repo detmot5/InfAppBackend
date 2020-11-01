@@ -51,6 +51,16 @@ public class CovidService {
         covidsDataList.add(covid);
     }
 
+    public void updateCovid(String country, Covid covid){
+        for(int i = 0; i < covidsDataList.size(); i++){
+            Covid t = covidsDataList.get(i);
+            if(t.getCountry().equals(country)){
+                covidsDataList.set(i,covid);
+                return;
+            }
+        }
+    }
+
 
     // Methods url
 
@@ -81,6 +91,7 @@ public class CovidService {
         }
         return covidsCountry;
     }
+
     //Tab to list
 
 
