@@ -3,6 +3,10 @@ package com.InfApp.InfApp.Components.CovidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.io.IOException;
 import java.util.*;
 
@@ -30,9 +34,13 @@ public class CovidController {
         return covidService.getCovidFromBeginning(country);
     }
 
-    @PostMapping(value = "/covids")
-    public void addCovid(@RequestBody Covid covid){
-        covidService.addCovid(covid);
+    @GetMapping("/covid/{country}/{fromDate}/{toDate}")
+    public ArrayList<Covid> getCovidDataFromDateToAnotherDate(
+            @PathVariable String country,
+            @PathVariable String fromDate,
+            @PathVariable String toDate) throws IOException, ParseException {
+        // Getting information about From date to date and one country.
+        return covidService.getCovidDataFromDateToAnotherDate(country,fromDate,toDate);
     }
 
 

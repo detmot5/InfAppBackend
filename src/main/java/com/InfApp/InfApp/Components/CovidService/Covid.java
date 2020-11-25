@@ -21,6 +21,8 @@ public class Covid{
     private Integer Recovered;
     private Integer Active;
     private String Date;
+    private int Cases;
+    private String Status;
 
 }
 

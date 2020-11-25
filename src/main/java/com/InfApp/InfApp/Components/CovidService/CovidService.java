@@ -5,8 +5,13 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 @Service
 public class CovidService {
@@ -40,6 +45,31 @@ public class CovidService {
         covidsDataList.clear();
 
         URL url = new URL("https://api.covid19api.com/total/country/" + country);
+
+        Covid[] covidsTemp = creatGson(url);
+
+        tabToListData(covidsTemp);
+
+        return covidsDataList;
+    }
+
+    public ArrayList<Covid> getCovidDataFromDateToAnotherDate(String country, String fromDate, String toDate) throws IOException, ParseException {
+        covidsDataList.clear();
+
+        // Example:
+        //https://api.covid19api.com/country/poland/status/confirmed?from=2020-09-19T00:00:00Z&to=2020-09-20T00:00:00Z
+        //2020-09-19T00:00:00Z
+
+        // date to Calendar/date
+        // date = day - 1
+        //And this:
+
+        URL url = new URL("https://api.covid19api.com/total/country/" + country
+                + "/status/confirmed?from="
+                    + fromDate + "T00:00:00Z"
+                        + "&to="
+                            + toDate + "T00:00:00Z");
+
         Covid[] covidsTemp = creatGson(url);
 
         tabToListData(covidsTemp);
@@ -81,6 +111,7 @@ public class CovidService {
         }
         return covidsCountry;
     }
+
     //Tab to list
 
 
