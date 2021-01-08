@@ -1,17 +1,36 @@
 package com.InfApp.InfApp.Components.CovidService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.*;
 
 
-@RestController
+@Controller
 public class CovidController {
 
     @Autowired
     private  CovidService covidService;
+
+    @GetMapping("/")
+    public String getRoot(Model model){
+        model.addAttribute("name", "Twój stary");
+        ArrayList<Covid> covids = null;
+        try {
+            covids = covidService.getCovidFromBeginning("Poland");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("covids", covids);
+        return "index";
+    }
+
+
+
+
 
     @GetMapping("/covids")
     public ArrayList<Covid> getAllCovids() throws IOException {

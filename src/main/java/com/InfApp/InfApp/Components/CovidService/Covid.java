@@ -2,11 +2,13 @@ package com.InfApp.InfApp.Components.CovidService;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class Covid{
 
     private String Country;
