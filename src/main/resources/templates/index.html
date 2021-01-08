@@ -9,11 +9,10 @@
     <title>InfApp</title>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="top-bar">
-            SIema
-        </div>
-
+<div class="wrapper">
+    <div class="top-bar">
+        SIema
+    </div>
         <div class="content">
             <!--/*@thymesVar id="covids" type="ArrayList<Covid>"*/-->
             <ul>
@@ -22,6 +21,14 @@
                     <span th:text="${cov.getDate()}"> </span>
                     <span style="font-weight: bold">Deaths: </span>
                     <span th:text="${cov.getDeaths()}"> </span>
+                    <span style="font-weight: bold">Country: </span>
+                    <span th:text="${cov.getCountry()}"></span>
+                    <span style="font-weight: bold">Confirmed: </span>
+                    <span th:text="${cov.getConfirmed()}"></span>
+                    <span style="font-weight: bold">Active </span>
+                    <span th:text="${cov.getActive()}"></span>
+                    <span style="font-weight: bold">Recovered: </span>
+                    <span th:text="${cov.getRecovered()}"></span>
                 </li>
             </ul>
         </div>
