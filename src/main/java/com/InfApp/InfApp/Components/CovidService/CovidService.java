@@ -47,6 +47,24 @@ public class CovidService {
         return covidsDataList;
     }
 
+
+    public Covid[] getNCovidDaysFromCountry(String country, Integer days) throws IOException{
+        var covidDays = getCovidFromBeginning(country);
+        Integer covidBegin = covidDays.size() - 1;
+        Integer covidEnd = covidDays.size() - 1 - days;
+
+        Covid[] result = new Covid[days];
+
+        int iterator = 0;
+        for(int i = covidBegin; i > covidEnd; i--){
+            result[iterator] = covidDays.get(i);
+            iterator++;
+        }
+
+        return result;
+    }
+
+
     public void addCovid(Covid covid) {
         covidsDataList.add(covid);
     }

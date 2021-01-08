@@ -18,9 +18,9 @@ public class CovidController {
     @GetMapping("/")
     public String getRoot(Model model){
         model.addAttribute("name", "Twój stary");
-        ArrayList<Covid> covids = null;
+        Covid[] covids = null;
         try {
-            covids = covidService.getCovidFromBeginning("Poland");
+            covids = covidService.getNCovidDaysFromCountry("Poland", 7);
         } catch (IOException e) {
             e.printStackTrace();
         }
