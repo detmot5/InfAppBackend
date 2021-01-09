@@ -55,14 +55,29 @@ public class CovidService {
 
         Covid[] result = new Covid[days];
 
-        int iterator = 0;
-        for(int i = covidBegin; i > covidEnd; i--){
+        for(int iterator = 0, i = covidBegin; i > covidEnd; i--){
             result[iterator] = covidDays.get(i);
             iterator++;
         }
 
+        result = AlgorithmIncrease(result);
+
         return result;
     }
+
+    public Covid[] AlgorithmIncrease(Covid[] result) {
+
+        for(int i = 0; i < result.length; i++){
+            if(i == result.length - 1){
+                result[i].setIncrease(0);
+            }else result[i].setIncrease(result[i].getConfirmed() - result[i + 1].getConfirmed());
+        }
+
+        return result;
+    }
+
+
+
 
 
     public void addCovid(Covid covid) {
