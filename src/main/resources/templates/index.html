@@ -11,11 +11,16 @@
 <body>
 <div class="wrapper">
     <div class="top-bar">
-        SIema
+        Szymon Prochal to totalny kozak
     </div>
+
+
         <div class="content">
             <!--/*@thymesVar id="covids" type="ArrayList<Covid>"*/-->
             <ul>
+                <span style="font-weight: bold"> TommorowIncrease: </span>
+                <span th:text="${covids[0].getTomorrowIncrease()}"></span>
+
                 <li th:each="cov: ${covids}">
                     <span style="font-weight: bold">Date: </span>
                     <span th:text="${cov.getDate()}"> </span>

@@ -20,7 +20,7 @@ public class CovidService {
 
         Covid[] covidsTemp = creatGson(url);
 
-        tabToListData(covidsTemp);
+        increaseToListData(covidsTemp);
 
         return covidsDataList;
     }
@@ -31,7 +31,7 @@ public class CovidService {
         creatGson(url);
         CovidCountry[] covidsTemp = creatGsonCountry(url);
 
-        tabToListCountry(covidsTemp);
+        increaseToListCountry(covidsTemp);
 
         return covidsCountry;
     }
@@ -42,7 +42,7 @@ public class CovidService {
         URL url = new URL("https://api.covid19api.com/total/country/" + country);
         Covid[] covidsTemp = creatGson(url);
 
-        tabToListData(covidsTemp);
+        increaseToListData(covidsTemp);
 
         return covidsDataList;
     }
@@ -61,17 +61,61 @@ public class CovidService {
         }
 
         result = AlgorithmIncrease(result);
+        result = AlgorithmPredictionsForTomorrow(result);
 
         return result;
     }
 
     public Covid[] AlgorithmIncrease(Covid[] result) {
 
+
+
         for(int i = 0; i < result.length; i++){
             if(i == result.length - 1){
                 result[i].setIncrease(0);
             }else result[i].setIncrease(result[i].getConfirmed() - result[i + 1].getConfirmed());
         }
+
+        return result;
+
+    }
+
+    public Covid[] AlgorithmPredictionsForTomorrow(Covid[] result) {
+
+        //todo it looks like shit so i have to clean this :D
+
+        int []increase = new int[result.length];
+        
+        for(int i = 0; i < result.length; i++){
+            if(i == result.length - 1){
+                increase[i] = 0;
+            }else increase[i] = result[i].getConfirmed() - result[i + 1].getConfirmed();
+        }
+
+        float [] procenty = new float[result.length];
+
+        for(int i = 2, z = 0; i < result.length; i++){
+            if(increase[i-1] <= increase[i]) {
+                procenty[z] = (float) (increase[i - 1] * 100) / increase[i];
+                procenty[z] = 100 - procenty[z];
+            }else{
+                procenty[z] = (float) (increase[i] * 100) / increase[i-1];
+                procenty[z] = 100 - procenty[z];
+            }
+            z++;i++;
+        }
+
+        float srednia = 0;
+
+        for(int i = 1; i < result.length/2; i++){
+            srednia += procenty[i];
+        }
+
+        float proc = srednia/ (result.length/2); // out =  ( ( temp * (100 + (proc/2)))/100 )
+        int out = (int) ((increase[0] * (100 + (proc / 2)) )/100);
+
+
+        result[0].setTomorrowIncrease((int)out);
 
         return result;
     }
@@ -111,21 +155,21 @@ public class CovidService {
 
     // Methods url
 
-    //Tab to list
-    public ArrayList<Covid> tabToListData(Covid[] covidsTemp){
+    //increase to list
+    public ArrayList<Covid> increaseToListData(Covid[] covidsTemp){
         for(int i = 0; i < covidsTemp.length; i++) {
             covidsDataList.add(covidsTemp[i]);
         }
         return covidsDataList;
     }
-    public ArrayList<CovidCountry> tabToListCountry(CovidCountry[] covidsTemp){
+    public ArrayList<CovidCountry> increaseToListCountry(CovidCountry[] covidsTemp){
         for(int i = 0; i < covidsTemp.length; i++) {
             covidsCountry.add(covidsTemp[i]);
         }
         return covidsCountry;
     }
 
-    //Tab to list
+    //increase to list
 
 
 }
