@@ -1,24 +1,97 @@
 body {
-     margin: 0;
-     padding: 0;
+    margin: 0;
+    padding: 0;
+    background: #1f1918;
+    font-family: sans-serif;
  }
 
-.wrapper {
-    padding: 0;
-    margin: 0;
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
+ul{
+    position: relative;
+    width: 70%;
+    margin: 100px auto 7px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+/* modelowanie listy */
+ul li
+{
+    display: flex;
+    background: rgba(255,255,255,.1);
+    padding: 10px 20px;
+    color: #fff;
+    margin: 7px;
+    transition: .5s;
+}
+ul li:nth-child(1)
+{
+    background: rgba(255,255,255,.1);
+}
+ul li:nth-child(2)
+{
+    background: rgba(255,255,255,.1);
 }
 
-.top-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 40px;
-    background-color: blue;
-    width: 100vw;
+ul li:nth-child(3)
+{
+    background: rgba(255,255,255,.1);
 }
-.content {
-    margin-top: 50px;
+ul li span:nth-child(1)
+{
+    width: 100px;
 }
+/* data */
+ul li span:nth-child(2)
+{
+    width:  200px;
+}
+ul li span:nth-child(3)
+{
+    width: 100px;
+}
+ul li span:nth-child(4)
+{
+    width: 100px;
+}
+ul li span:nth-child(5)
+{
+    width: 100px;
+}
+ul li span:nth-child(6)
+{
+    width: 100px;
+}
+ul li span:nth-child(7)
+{
+    width: 100px;
+}
+ul li span:nth-child(8)
+{
+    width: 100px;
+}
+ul li span:nth-child(9)
+{
+    width: 100px;
+}
+ul li span:nth-child(10)
+{
+    width: 100px;
+}
+ul li span:nth-child(11)
+{
+    width: 100px;
+    text-align: right;
+}
+ul li span:nth-child(12)
+{
+    width: 100px;
+    text-align: right;
+}
+
+/* wyskakujace tlo */
+ul li:hover
+{
+    transform: scale(1.08);
+    background:  #0f0706; ;
+}
+
+
