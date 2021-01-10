@@ -69,7 +69,6 @@ public class CovidService {
     public Covid[] AlgorithmIncrease(Covid[] result) {
 
 
-
         for(int i = 0; i < result.length; i++){
             if(i == result.length - 1){
                 result[i].setIncrease(0);
@@ -77,12 +76,9 @@ public class CovidService {
         }
 
         return result;
-
     }
 
     public Covid[] AlgorithmPredictionsForTomorrow(Covid[] result) {
-
-        //todo it looks like shit so i have to clean this :D
 
         int []increase = new int[result.length];
         
@@ -92,6 +88,30 @@ public class CovidService {
             }else increase[i] = result[i].getConfirmed() - result[i + 1].getConfirmed();
         }
 
+        float [] percentageOfDailyGain = calculatesPrecentageOfDailyGain(increase, result);
+
+        float average = calculationOfTheAveragePercentageIncrease(percentageOfDailyGain, result);
+
+        int out = (int) ((increase[0] * (100 + (average / 2)) )/100);
+
+        result[0].setTomorrowIncrease(out);
+
+        return result;
+    }
+
+    public float calculationOfTheAveragePercentageIncrease(float[] percentageOfDailyGain, Covid[] result){
+        float srednia = 0;
+
+        for(int i = 1; i < result.length/2; i++){
+            srednia += percentageOfDailyGain[i];
+        }
+
+        float out = srednia/(result.length/2);
+
+        return out;
+    }
+
+    public float[] calculatesPrecentageOfDailyGain(int[] increase, Covid[] result){
         float [] procenty = new float[result.length];
 
         for(int i = 2, z = 0; i < result.length; i++){
@@ -105,23 +125,8 @@ public class CovidService {
             z++;i++;
         }
 
-        float srednia = 0;
-
-        for(int i = 1; i < result.length/2; i++){
-            srednia += procenty[i];
-        }
-
-        float proc = srednia/ (result.length/2); // out =  ( ( temp * (100 + (proc/2)))/100 )
-        int out = (int) ((increase[0] * (100 + (proc / 2)) )/100);
-
-
-        result[0].setTomorrowIncrease((int)out);
-
-        return result;
+        return procenty;
     }
-
-
-
 
 
     public void addCovid(Covid covid) {
