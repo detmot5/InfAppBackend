@@ -60,18 +60,17 @@ public class CovidService {
             iterator++;
         }
 
-        result = AlgorithmIncrease(result);
+        result = AlgorithmIncrease(result,country);
         result = AlgorithmPredictionsForTomorrow(result);
 
         return result;
     }
 
-    public Covid[] AlgorithmIncrease(Covid[] result) {
-
+    public Covid[] AlgorithmIncrease(Covid[] result, String country) throws IOException {
 
         for(int i = 0; i < result.length; i++){
             if(i == result.length - 1){
-                result[i].setIncrease(0);
+                // todo Okey u have to change getNcovidDaysFromCountry. Becouse if u want to creat here []Covid. It makes reference :/
             }else result[i].setIncrease(result[i].getConfirmed() - result[i + 1].getConfirmed());
         }
 
