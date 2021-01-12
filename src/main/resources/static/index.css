@@ -1,3 +1,9 @@
+.tomorrow{
+    color: white;
+    text-align: center;
+    font-size: 30px;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -42,7 +48,7 @@ ul li span:nth-child(1)
 /* data */
 ul li span:nth-child(2)
 {
-    width:  200px;
+    width:  250px;
 }
 ul li span:nth-child(3)
 {
@@ -62,7 +68,7 @@ ul li span:nth-child(6)
 }
 ul li span:nth-child(7)
 {
-    width: 100px;
+    width: 130px;
 }
 ul li span:nth-child(8)
 {
@@ -78,10 +84,17 @@ ul li span:nth-child(10)
 }
 ul li span:nth-child(11)
 {
-    width: 100px;
-    text-align: right;
+    width: 120px;
 }
 ul li span:nth-child(12)
+{
+    width: 100px;
+}
+ul li span:nth-child(13)
+{
+    width: 100px;
+}
+ul li span:nth-child(14)
 {
     width: 100px;
     text-align: right;

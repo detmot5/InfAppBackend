@@ -17,18 +17,18 @@ public class CovidController {
 
     @GetMapping("/")
     public String getRoot(Model model){
-        model.addAttribute("name", "Twój stary");
+        model.addAttribute("name", "");
         Covid[] covids = null;
+
         try {
             covids = covidService.getNCovidDaysFromCountry("Poland", 7);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         model.addAttribute("covids", covids);
         return "index";
     }
-
-
 
 
 

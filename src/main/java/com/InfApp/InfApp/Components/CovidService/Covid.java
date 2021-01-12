@@ -24,5 +24,9 @@ public class Covid{
     private Integer Active;
     private String Date;
 
+    private Integer Increase;
+
+    private Integer TomorrowIncrease;
+
 }
 

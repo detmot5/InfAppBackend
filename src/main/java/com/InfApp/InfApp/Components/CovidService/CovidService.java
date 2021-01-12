@@ -20,7 +20,7 @@ public class CovidService {
 
         Covid[] covidsTemp = creatGson(url);
 
-        tabToListData(covidsTemp);
+        increaseToListData(covidsTemp);
 
         return covidsDataList;
     }
@@ -31,7 +31,7 @@ public class CovidService {
         creatGson(url);
         CovidCountry[] covidsTemp = creatGsonCountry(url);
 
-        tabToListCountry(covidsTemp);
+        increaseToListCountry(covidsTemp);
 
         return covidsCountry;
     }
@@ -42,7 +42,7 @@ public class CovidService {
         URL url = new URL("https://api.covid19api.com/total/country/" + country);
         Covid[] covidsTemp = creatGson(url);
 
-        tabToListData(covidsTemp);
+        increaseToListData(covidsTemp);
 
         return covidsDataList;
     }
@@ -55,13 +55,96 @@ public class CovidService {
 
         Covid[] result = new Covid[days];
 
-        int iterator = 0;
-        for(int i = covidBegin; i > covidEnd; i--){
+        for(int iterator = 0, i = covidBegin; i > covidEnd; i--){
             result[iterator] = covidDays.get(i);
             iterator++;
         }
 
+        result = AlgorithmIncrease(result,country);
+        result = AlgorithmPredictionsForTomorrow(result);
+
         return result;
+    }
+
+    public Covid getOneCovidDaysFromCountry(String country, Integer days) throws IOException{
+        //todo clean this
+        var covidDays = getCovidFromBeginning(country);
+        Integer covidBegin = covidDays.size() - 1;
+        Integer covidEnd = covidDays.size() - 1 - days;
+
+        Covid[] result1 = new Covid[days];
+        Covid result;
+
+        for(int iterator = 0, i = covidBegin; i > covidEnd; i--){
+            result1[iterator] = covidDays.get(i);
+        }
+
+        result = covidDays.get(days - 1);
+
+        return result;
+    }
+
+    public Covid[] AlgorithmIncrease(Covid[] result, String country) throws IOException {
+
+        for(int i = 0; i < result.length; i++){
+            if(i == result.length - 1){
+                Covid tempCovid = getOneCovidDaysFromCountry(country, result.length + 1);
+                result[i].setIncrease(result[i].getConfirmed()  - tempCovid.getConfirmed() );
+                // todo Okey u have to change getNcovidDaysFromCountry. Becouse if u want to creat here []Covid. It makes reference :/
+            }else result[i].setIncrease(result[i].getConfirmed() - result[i + 1].getConfirmed());
+        }
+
+        return result;
+    }
+
+    public Covid[] AlgorithmPredictionsForTomorrow(Covid[] result) {
+
+        int []increase = new int[result.length];
+        
+        for(int i = 0; i < result.length; i++){
+            if(i == result.length - 1){
+                increase[i] = 0;
+            }else increase[i] = result[i].getConfirmed() - result[i + 1].getConfirmed();
+        }
+
+        float [] percentageOfDailyGain = calculatesPrecentageOfDailyGain(increase, result);
+
+        float average = calculationOfTheAveragePercentageIncrease(percentageOfDailyGain, result);
+
+        int out = (int) ((increase[0] * (100 + (average / 2)) )/100);
+
+        result[0].setTomorrowIncrease(out);
+
+        return result;
+    }
+
+    public float calculationOfTheAveragePercentageIncrease(float[] percentageOfDailyGain, Covid[] result){
+        float srednia = 0;
+
+        for(int i = 1; i < result.length/2; i++){
+            srednia += percentageOfDailyGain[i];
+        }
+
+        float out = srednia/(result.length/2);
+
+        return out;
+    }
+
+    public float[] calculatesPrecentageOfDailyGain(int[] increase, Covid[] result){
+        float [] procenty = new float[result.length];
+
+        for(int i = 2, z = 0; i < result.length; i++){
+            if(increase[i-1] <= increase[i]) {
+                procenty[z] = (float) (increase[i - 1] * 100) / increase[i];
+                procenty[z] = 100 - procenty[z];
+            }else{
+                procenty[z] = (float) (increase[i] * 100) / increase[i-1];
+                procenty[z] = 100 - procenty[z];
+            }
+            z++;i++;
+        }
+
+        return procenty;
     }
 
 
@@ -96,21 +179,21 @@ public class CovidService {
 
     // Methods url
 
-    //Tab to list
-    public ArrayList<Covid> tabToListData(Covid[] covidsTemp){
+    //increase to list
+    public ArrayList<Covid> increaseToListData(Covid[] covidsTemp){
         for(int i = 0; i < covidsTemp.length; i++) {
             covidsDataList.add(covidsTemp[i]);
         }
         return covidsDataList;
     }
-    public ArrayList<CovidCountry> tabToListCountry(CovidCountry[] covidsTemp){
+    public ArrayList<CovidCountry> increaseToListCountry(CovidCountry[] covidsTemp){
         for(int i = 0; i < covidsTemp.length; i++) {
             covidsCountry.add(covidsTemp[i]);
         }
         return covidsCountry;
     }
 
-    //Tab to list
+    //increase to list
 
 
 }
