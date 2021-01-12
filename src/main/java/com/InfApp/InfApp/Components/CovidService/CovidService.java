@@ -66,10 +66,30 @@ public class CovidService {
         return result;
     }
 
+    public Covid getOneCovidDaysFromCountry(String country, Integer days) throws IOException{
+        //todo clean this
+        var covidDays = getCovidFromBeginning(country);
+        Integer covidBegin = covidDays.size() - 1;
+        Integer covidEnd = covidDays.size() - 1 - days;
+
+        Covid[] result1 = new Covid[days];
+        Covid result;
+
+        for(int iterator = 0, i = covidBegin; i > covidEnd; i--){
+            result1[iterator] = covidDays.get(i);
+        }
+
+        result = covidDays.get(days - 1);
+
+        return result;
+    }
+
     public Covid[] AlgorithmIncrease(Covid[] result, String country) throws IOException {
 
         for(int i = 0; i < result.length; i++){
             if(i == result.length - 1){
+                Covid tempCovid = getOneCovidDaysFromCountry(country, result.length + 1);
+                result[i].setIncrease(result[i].getConfirmed()  - tempCovid.getConfirmed() );
                 // todo Okey u have to change getNcovidDaysFromCountry. Becouse if u want to creat here []Covid. It makes reference :/
             }else result[i].setIncrease(result[i].getConfirmed() - result[i + 1].getConfirmed());
         }
