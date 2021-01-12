@@ -9,18 +9,9 @@
     <title>InfApp</title>
 </head>
 <body>
-<div class="wrapper">
-    <div class="top-bar">
-        Szymon Prochal to totalny kozak
-    </div>
-
-
         <div class="content">
             <!--/*@thymesVar id="covids" type="ArrayList<Covid>"*/-->
             <ul>
-                <span style="font-weight: bold"> TomorowIncrease: </span>
-                <span th:text="${covids[0].getTomorrowIncrease()}"></span>
-
                 <li th:each="cov: ${covids}">
                     <span style="font-weight: bold">Date: </span>
                     <span th:text="${cov.getDate()}"> </span>
@@ -30,7 +21,7 @@
                     <span th:text="${cov.getCountry()}"></span>
                     <span style="font-weight: bold"> Confirmed: </span>
                     <span th:text="${cov.getConfirmed()}"></span>
-                    <span style="font-weight: bold"> Active </span>
+                    <span style="font-weight: bold"> Active: </span>
                     <span th:text="${cov.getActive()}"></span>
                     <span style="font-weight: bold"> Recovered: </span>
                     <span th:text="${cov.getRecovered()}"></span>
@@ -38,6 +29,11 @@
                     <span th:text="${cov.getIncrease()}"></span>
                 </li>
             </ul>
+    <div class = "tomorrow">
+            <br/>
+            <span style="font-weight: bold"> Tomorrow will increase by: </span>
+            <span th:text="${covids[0].getTomorrowIncrease()}"></span>
+        </div>
         </div>
     </div>
 
