@@ -18,7 +18,7 @@ ul{
     padding: 10px;
     box-sizing: border-box;
 }
-/* modelowanie listy */
+
 ul li
 {
     display: flex;
@@ -45,7 +45,7 @@ ul li span:nth-child(1)
 {
     width: 100px;
 }
-/* data */
+
 ul li span:nth-child(2)
 {
     width:  250px;
@@ -100,7 +100,6 @@ ul li span:nth-child(14)
     text-align: right;
 }
 
-/* wyskakujace tlo */
 ul li:hover
 {
     transform: scale(1.08);
