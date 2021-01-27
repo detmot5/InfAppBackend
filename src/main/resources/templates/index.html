@@ -1,0 +1,40 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/index.css}"/>
+    <title>InfApp</title>
+</head>
+<body>
+        <div class="content">
+            <ul>
+                <li th:each="cov: ${covids}">
+                    <span style="font-weight: bold">Date: </span>
+                    <span th:text="${cov.getDate()}"> </span>
+                    <span style="font-weight: bold"> Deaths: </span>
+                    <span th:text="${cov.getDeaths()}"> </span>
+                    <span style="font-weight: bold"> Country: </span>
+                    <span th:text="${cov.getCountry()}"></span>
+                    <span style="font-weight: bold"> Confirmed: </span>
+                    <span th:text="${cov.getConfirmed()}"></span>
+                    <span style="font-weight: bold"> Active: </span>
+                    <span th:text="${cov.getActive()}"></span>
+                    <span style="font-weight: bold"> Recovered: </span>
+                    <span th:text="${cov.getRecovered()}"></span>
+                    <span style="font-weight: bold"> Increase: </span>
+                    <span th:text="${cov.getIncrease()}"></span>
+                </li>
+            </ul>
+    <div class = "tomorrow">
+            <br/>
+            <span style="font-weight: bold"> Tomorrow will increase by: </span>
+            <span th:text="${covids[0].getTomorrowIncrease()}"></span>
+        </div>
+        </div>
+    </div>
+
+</body>
+</html>
